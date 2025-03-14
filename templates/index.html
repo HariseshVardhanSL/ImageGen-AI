@@ -1,0 +1,244 @@
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>AI Image Generator</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-top: 50px;
+        }
+        #image { 
+            margin-top: 20px; 
+            max-width: 512px; 
+            border: 2px solid #4CAF50; 
+            border-radius: 10px; 
+        }
+        .hidden { display: none; }
+        #loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Image Generator</h1>
+    <form method="POST" id="imageForm">
+        <input type="text" name="prompt" placeholder="Enter a prompt" required>
+        <button type="submit">Generate Image</button>
+    </form>
+
+
+    <div id="loader" class="hidden"></div>
+
+    {% if image_url %}
+        <img id="image" src="{{ image_url }}" alt="Generated Image">
+    {% endif %}
+
+    <script>
+        document.getElementById("imageForm").addEventListener("submit", function() {
+            document.getElementById("loader").classList.remove("hidden");
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>AI Image Generator</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-top: 50px; 
+            position: relative; 
+            height: 100vh; 
+            overflow: hidden; 
+        }
+        #video-background {
+            position: fixed;
+            top: 0; left: 0; 
+            width: 100%; 
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        #image { 
+            margin-top: 20px; 
+            max-width: 512px; 
+            border: 2px solid #4CAF50; 
+            border-radius: 10px; 
+        }
+        #loading {
+            display: none;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .tit{
+            background-color:grey;
+            color: lightcoral;
+            width: 100%;
+            padding: 5px;
+        }
+        #inp{
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+        }
+        #but{
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            background-color: purple;
+            color: white;
+        }
+    </style>
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <video id="video-background" autoplay loop muted>
+        <source src="{{ url_for('static', filename='aivid.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="tit">
+        <h1><center>AI Image Generator</center></h1>
+    </div>
+    <form method="POST" onsubmit="showLoading()">
+        <input id="inp" type="text" name="prompt" placeholder="Enter a prompt" required>
+        <button id="but" type="submit">Generate Image</button>
+    </form>
+    
+    <div id="loading">Generating image... Please wait.</div>
+
+    {% if image_url %}
+        <img id="image" src="{{ image_url }}" alt="Generated Image">
+    {% endif %}
+</body>
+</html>
+ -->
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <link rel="icon" href="../static/h_symol.jpg" type="image/jpeg"/>
+     <title>ImageGen-AI</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+         body { 
+             font-family: Arial, sans-serif; 
+             display: flex; 
+             flex-direction: column; 
+             align-items: center; 
+             margin-top: 50px; 
+             position: relative; 
+             height: 100vh; 
+             overflow: hidden; 
+             padding: 10px;
+             box-sizing: border-box;
+         }
+         #video-background {
+             position: fixed;
+             top: 0; left: 0; 
+             width: 100%; 
+             height: 100%;
+             object-fit: cover;
+             z-index: -1;
+         }
+         #image { 
+             margin-top: 20px; 
+             max-width: 100%; 
+             border: 2px solid grey; 
+             border-radius: 10px; 
+         }
+         #loading {
+             display: none;
+             margin-top: 20px;
+             font-weight: bold;
+             color: grey;
+         }
+         .tit{
+             background-color: grey;
+             color: lightcoral;
+             width: 99%;
+             padding: 5px;
+             text-align: center;
+         }
+         #inp, #but {
+             width: 100%;
+             max-width: 400px;
+             padding: 10px;
+             border-radius: 10px;
+             border: 2px solid black;
+             margin-top: 10px;
+             box-sizing: border-box;
+         }
+         #but{
+             background-color: purple;
+             color: white;
+             cursor: pointer;
+         }
+         .first{
+            position: relative;
+            top: 1%;
+            background-color: black;
+            width: 100%;
+            height: 30%;
+         }
+     </style>
+     <script>
+         function showLoading() {
+             document.getElementById('loading').style.display = 'block';
+         }
+     </script>
+ </head>
+ <body>
+    <div class="first">
+        <video id="video-background" autoplay loop muted>
+            <source src="./static/aivid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    
+        <div class="tit">
+            <h1>ImageGen<span style="color: black;">AI</span></h1>
+        </div>
+        <form method="POST" onsubmit="showLoading()">
+            <input id="inp" type="text" name="prompt" placeholder="Enter a prompt" required>
+            <button id="but" type="submit" onclick="remind()">Generate Image</button>
+        </form>
+    </div>
+     
+     <div id="loading">Generating image... Please wait.</div>
+ 
+     {% if image_url %}
+         <img id="image" src="{{ image_url }}" alt="Generated Image">
+     {% endif %}
+     <script>
+        alert("Welcome to ImageGenAI 😊, you can create image here using prompt")
+        function remind(){
+            alert("It might take few minutes so pls be patient my frd....😊(pls dont refresh the page)")
+        }
+     </script> 
+ </body>
+ </html>
+ 
